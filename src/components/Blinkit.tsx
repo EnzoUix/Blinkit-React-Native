@@ -42,7 +42,7 @@ const DATA = [
 ];
 
 
-const Blinkit = ({navigation}) => {
+const Blinkit = ({navigation,component}:{navigation:any,component:string}) => {
   const placeholders = [
     'search "paneer"',
     'search "curd"',
