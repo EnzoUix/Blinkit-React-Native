@@ -1,4 +1,4 @@
-import {View, Text, FlatList} from 'react-native';
+import {View, Text} from 'react-native';
 import React from 'react';
 import ItemCard from './ItemCard';
 
@@ -37,19 +37,19 @@ export default function ShopByCategory() {
       {Array(3)
         .fill(null)
         .map((_, i) => (
-          <FlatList
+          <View
             key={i}
-            numColumns={4}
-            data={DATA}
-            renderItem={({item}) => (
+            style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+            {DATA.map((item, index) => (
               <ItemCard
+                key={index}
                 title={item.title}
                 width={85}
                 containerHeight={140}
                 height={90}
               />
-            )}
-          />
+            ))}
+          </View>
         ))}
     </View>
   );

@@ -1,9 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import {View, Text, FlatList} from 'react-native';
+import {View, Text} from 'react-native';
 import React from 'react';
 import ItemCard from './ItemCard';
-import { DATA } from '../utils/constants';
-
+import {DATA} from '../utils/constants';
 
 export default function NewArrivals() {
   return (
@@ -24,7 +23,21 @@ export default function NewArrivals() {
         }}>
         Have you tried these yet?
       </Text>
-      <FlatList
+
+      <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+        {DATA.map((item, i) => (
+          <ItemCard
+            key={i}
+            title={item.title}
+            containerHeight={140}
+            height={104}
+            width={180}
+            isBanner={true}
+          />
+        ))}
+      </View>
+
+      {/* <FlatList
         numColumns={2}
         keyExtractor={item => item.id}
         data={DATA}
@@ -37,7 +50,7 @@ export default function NewArrivals() {
             isBanner={true}
           />
         )}
-      />
+      /> */}
     </View>
   );
 }
