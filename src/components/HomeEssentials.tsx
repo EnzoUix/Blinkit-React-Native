@@ -1,4 +1,5 @@
-import {View, Image, FlatList} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import {View, Image} from 'react-native';
 import React from 'react';
 import ItemCard from './ItemCard';
 import {DATA, screenWidth} from '../utils/constants';
@@ -19,19 +20,17 @@ export default function HomeEssentials() {
           paddingVertical: 6,
           paddingHorizontal: 14,
           flex: 1,
+          flexDirection:'row',
         }}>
-        <FlatList
-          numColumns={4}
-          data={DATA}
-          renderItem={({item}) => (
-            <ItemCard
-              title={item.title}
-              containerHeight={112}
-              height={82}
-              width={78}
-            />
-          )}
+        {DATA.map((item,i)=>(
+          <ItemCard
+          key={i}
+          title={item.title}
+          containerHeight={112}
+          height={82}
+          width={78}
         />
+        ))}
       </View>
     </View>
   );

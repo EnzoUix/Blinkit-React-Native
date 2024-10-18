@@ -1,5 +1,5 @@
-import {FlatList, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
-import React from 'react';
+import {FlatList, SafeAreaView, StatusBar, StyleSheet, Text} from 'react-native';
+import React, { useState } from 'react';
 import Blinkit from '../components/Blinkit';
 import DeliveryTime from '../components/DeliveryTime';
 import SearchBar from '../components/SearchBar';
@@ -8,8 +8,9 @@ import ShopByCategory from '../components/ShopByCategory';
 import ShopByStore from '../components/ShopByStore';
 import NewArrivals from '../components/NewArrivals';
 import HomeEssentials from '../components/HomeEssentials';
+import BottomSheetComponent from './BottomSheet';
 
-const Data =[
+const Data = [
   {
     title:'Delivery time',
     Component:DeliveryTime,
@@ -41,13 +42,19 @@ const Data =[
 ]
 
 export default function BlinkitScreen({navigation}: any) {
+  const [isBottomSheetOpen,SetIsBottomSheetOpen] = useState<boolean>(false)
+  const handleBottomSheet= () =>{
+    SetIsBottomSheetOpen(!isBottomSheetOpen)
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar hidden/>
+      {/* <StatusBar hidden/> */}
       <FlatList
         data={Data}
-        renderItem={({item}) => <item.Component navigation={navigation} />}
+        renderItem={({item}) => <item.Component handleBottomSheet={handleBottomSheet} navigation={navigation} />}
       />
+     {isBottomSheetOpen && <BottomSheetComponent handleBottomSheet={handleBottomSheet} />}
     </SafeAreaView>
   );
 }
